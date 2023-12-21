@@ -4,3 +4,5 @@ Pandas
 Numpy
 tensorflow>=2.5.0
 scikit-learn
+psycopg2-binary
+python-dotenv
