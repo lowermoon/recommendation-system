@@ -37,26 +37,26 @@ def get_projects_from_db(conn):
 
 app = Flask(__name__)
 
-model = load_model('recommender_model.h5')
+model = load_model('recommendermodel.h5')
 # projects = pd.read_csv('generate_random_data_project.csv')
 conn = connect_to_sql()
 projects = get_projects_from_db(conn)
 
 
 
-# def get_recommendations(id_freelancer, projects, model):
+# def get_recommendations(freelancer_id, projects, model):
 #     try:
 #         projects = projects.copy()
-#         id_freelancers = np.array([id_freelancer] * len(projects))
-#         results = model([projects.id_project.values, id_freelancers]).numpy().reshape(-1)
+#         id_freelancers = np.array([freelancer_id] * len(projects))
+#         results = model([projects.project_id.values, id_freelancers]).numpy().reshape(-1)
 
 #         projects['predicted_rating'] = pd.Series(results)
 #         projects = projects.sort_values('predicted_rating', ascending=False)
 
-#         print(f'Recommendations for user {id_freelancer}')
+#         print(f'Recommendations for user {freelancer_id}')
 #         return projects
 #     except tf.errors.InvalidArgumentError:
-#         print(f'User {id_freelancer} not found. Returning random recommendations.')
+#         print(f'User {freelancer_id} not found. Returning random recommendations.')
 #         # Menggunakan np.random.randint untuk mendapatkan nilai random_state yang berbeda setiap kali dijalankan
 #         random_state = np.random.randint(1, 100)
 #         projects = projects.sample(n=10, random_state=random_state)
