@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify
 from keras.models import load_model
 from tensorflow.keras.layers import Input, Embedding, Dot, Flatten
 from sklearn.model_selection import train_test_split
+import os
 
 app = Flask(__name__)
 
@@ -31,6 +32,10 @@ def get_recommendations(id_freelancer, projects, model):
         return projects
 
 
+@app.route('/', methods=['GET'])
+def connect():
+    return jsonify('Connected to server!')
+
 @app.route('/get_recommendations', methods=['GET'])
 def recommendations():
     rekomendasi = get_recommendations(19, projects, model)
@@ -38,4 +43,4 @@ def recommendations():
     return jsonify(rekomendasi_dict)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))

@@ -1,0 +1,6 @@
+gunicorn
+Flask
+Pandas
+Numpy
+tensorflow>=2.5.0
+scikit-learn
